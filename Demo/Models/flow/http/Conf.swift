@@ -12,13 +12,14 @@ import VueSwift
 
 enum RType {
     case None
-    case POST
     case GET
+    case UPDATE
+    case DELETE
 }
 class Conf {
     
     func getUrl() -> String{return ""}
-    func getRequestType() -> RType{return RType.POST}
+    func getRequestType() -> RType{return RType.None}
     func getBody() -> [String:Any]{return  [String:Any]()}
     func v_viewController() -> UIViewController{return UIViewController()}
     func getNvgition(data:Any) -> VueData{return VueData()}

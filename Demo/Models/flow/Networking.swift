@@ -11,15 +11,24 @@ import AFNetworking
 import VueSwift
 
 class Networking: AFHTTPSessionManager {
-
+    
     func request(params:Conf?,results:@escaping (Bool,Any) -> ()){
             
             if let p = params{
                 
-        
-                
-                let url = baseUrl + p.getUrl()
-                let body = p.getBody()
+                var typeStr = ""
+                if p.getRequestType() == .GET {
+                    typeStr = "/getNew"
+                }else  if p.getRequestType() == .UPDATE {
+                    typeStr = "/updateNew"
+                }else  if p.getRequestType() == .DELETE {
+                    typeStr = "/deleteNew"
+                }
+                let url = baseUrl + typeStr
+                var body = [String:Any]()
+                body["params"] = WJson.stringForDic(p.getBody())
+                body["table"] = p.getUrl()
+                print(body)
                 Alert.loading()
 
                 self.responseSerializer.acceptableContentTypes?.insert("text/html")

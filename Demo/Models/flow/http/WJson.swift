@@ -21,6 +21,17 @@ class WJson{
         
         return jsonSer
     }
+    static func stringForDic(_ dic:[String:Any]) -> String{
+        
+       if (!JSONSerialization.isValidJSONObject(dic)) {
+           print("无法解析出JSONString")
+           return ""
+       }
+       let data : NSData! = try? JSONSerialization.data(withJSONObject: dic, options: []) as NSData!
+       let JSONString = NSString(data:data as Data,encoding: String.Encoding.utf8.rawValue)
+       return JSONString! as String
+
+    }
     static func getModels(_ json:Any) -> [VueData]{
         var array  = [VueData]()
         if let data = json as? [String:Any]{

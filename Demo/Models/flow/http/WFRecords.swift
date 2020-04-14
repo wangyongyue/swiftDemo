@@ -11,11 +11,11 @@ import VueSwift
 class WFRecords: Conf{
     
     private var datas = [RecordModel]()
-    override func getUrl() -> String{return "/getPages"}
-    override func getRequestType() -> RType{return RType.POST}
+    override func getUrl() -> String{return "StockOut"}
+    override func getRequestType() -> RType{return RType.GET}
     override func getBody() -> [String:Any]{
         var body = [String:Any]()
-        body["token"] = LoginHttp.getToken()
+//        body["token"] = LoginHttp.getToken()
         return body
     }
     
@@ -48,9 +48,8 @@ class WFRecords: Conf{
 }
 class RecordModel{
     
-    var id:Int?
+    var id:CLongLong?
     var name:String?
-    var page:String?
     
     static func getModelForAny(_ data:Any) -> [RecordModel]{
     
@@ -58,15 +57,13 @@ class RecordModel{
         if let array = data as? [Any]{
             for value in array{
                 if let dic = value as? [String:Any]{
-                    var m = RecordModel()
-                    m.id = dic["id"] as? Int
+                    let m = RecordModel()
+                    m.id = dic["id"] as? CLongLong
                     m.name = dic["name"] as? String
-                    m.page = dic["page"] as? String
                     list.append(m)
                 }
             }
         }
-        
         return list
         
     }

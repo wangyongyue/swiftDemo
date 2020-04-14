@@ -13,10 +13,6 @@ class WFConfiguration: Configuration {
     
     override init() {
         super.init()
-        
-      
-
-       
        
         Vue.register(aClass: WFMsg.classForCoder(), toClass: WFMsgCell.classForCoder())
         Vue.register(aClass: WFOut.classForCoder(), toClass: WFOutCell.classForCoder())
