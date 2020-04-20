@@ -11,7 +11,7 @@ import VueSwift
 class WFRecords: Conf{
     
     private var datas = [RecordModel]()
-    override func getUrl() -> String{return "StockOut"}
+    override func getUrl() -> String{return "/stockOut"}
     override func getRequestType() -> RType{return RType.GET}
     override func getBody() -> [String:Any]{
         var body = [String:Any]()
